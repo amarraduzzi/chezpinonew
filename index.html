@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chez Pino</title>
+<meta name="description" content="Chez Pino, Hay Riad, Rabat. Pizza, pasta, panuozzo. Le soir à l'étage : Pino Notte.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+/* Photo-led, condensed display type, framed full-bleed chapters. Dark espresso world with cream and olive panels, one saffron-brass accent for actions. */
+:root{
+  --ink:#171311;
+  --ink-2:#211B18;
+  --cream:#F3EBDD;
+  --cream-2:#E9DFCD;
+  --mute:#B9AE9C;
+  --mute-dark:#6B5F53;
+  --brass:#A88A55;
+  --gold:#D9A94E;
+  --olive:#343D2E;
+  --wine:#4A2927;
+  --line-d:rgba(243,235,221,.14);
+  --line-l:rgba(23,19,17,.14);
+  --display:"Anton","Oswald","Impact","Arial Narrow",sans-serif;
+  --body:"Manrope","Helvetica Neue",Arial,sans-serif;
+  --accent:"Cormorant Garamond",Garamond,"Times New Roman",serif;
+  --g:clamp(16px,3.2vw,40px);
+  --r:18px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--ink)}
+body{margin:0;background:var(--ink);color:var(--cream);font-family:var(--body);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+h1,h2,h3,h4{font-family:var(--display);font-weight:400;text-transform:uppercase;margin:0;line-height:.92;letter-spacing:.005em;text-wrap:balance}
+p{margin:0}
+.it{font-family:var(--accent);font-style:italic;text-transform:none;letter-spacing:0}
+.label{font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase}
+.frame{padding-inline:var(--g)}
+.inner{max-width:1320px;margin:0 auto}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:50px;padding:0 24px;border-radius:999px;border:1px solid transparent;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;transition:transform .3s,background .3s,color .3s,border-color .3s}
+.btn svg{width:16px;height:16px;transition:transform .3s}
+.btn:hover svg{transform:translateX(4px)}
+.btn-gold{background:var(--gold);color:var(--ink)}
+.btn-gold:hover{background:var(--cream)}
+.btn-cream{background:var(--cream);color:var(--ink)}
+.btn-cream:hover{background:var(--gold)}
+.btn-line{border-color:rgba(243,235,221,.4);color:var(--cream)}
+.btn-line:hover{border-color:var(--cream);background:var(--cream);color:var(--ink)}
+.btn-dark{border-color:var(--ink);color:var(--ink)}
+.btn-dark:hover{background:var(--ink);color:var(--cream)}
+
+/* photo base */
+.ph{position:relative;overflow:hidden;background:var(--ink-2)}
+.ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.ph.broken img{visibility:hidden}
+
+/* NAV */
+.nav{position:fixed;z-index:60;top:calc(env(safe-area-inset-top,0px) + 14px);left:0;right:0;padding-inline:var(--g);pointer-events:none}
+.nav-bar{pointer-events:auto;max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px;height:60px;padding:0 8px 0 24px;border-radius:999px;background:rgba(23,19,17,.62);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line-d);transition:background .4s}
+.nav.scrolled .nav-bar{background:rgba(23,19,17,.92)}
+.logo{font-family:var(--display);font-size:24px;letter-spacing:.04em;line-height:1}
+.links{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+.links a{font-size:11px;font-weight:600;letter-spacing:.2em;color:var(--mute);transition:color .3s}
+.links a:hover{color:var(--cream)}
+.nav .btn{min-height:44px;padding:0 20px}
+.burger{display:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line-d);background:transparent;position:relative}
+.burger i{position:absolute;left:13px;right:13px;height:1.5px;background:var(--cream);transition:transform .35s,top .35s}
+.burger i:nth-child(1){top:18px}.burger i:nth-child(2){top:25px}
+.burger[aria-expanded="true"] i:nth-child(1){top:21px;transform:rotate(45deg)}
+.burger[aria-expanded="true"] i:nth-child(2){top:21px;transform:rotate(-45deg)}
+.overlay{position:fixed;inset:0;z-index:55;background:var(--ink);padding:110px var(--g) 40px;display:flex;flex-direction:column;gap:6px}
+.overlay a.big{font-family:var(--display);font-size:clamp(48px,14vw,80px);text-transform:uppercase;line-height:1.02}
+.overlay a.big:hover{color:var(--gold)}
+.overlay .btn{margin-top:auto;align-self:flex-start}
+
+/* HERO */
+.hero{padding:var(--g);padding-bottom:0}
+.hero-ph{border-radius:var(--r);height:calc(100svh - var(--g));min-height:560px;max-height:980px}
+.hero-ph img{animation:kenburns 26s ease-out forwards;transform-origin:60% 55%}
+@keyframes kenburns{from{transform:scale(1.14)}to{transform:scale(1)}}
+.hero-ph::after{content:"";position:absolute;inset:0;background:rgba(17,13,11,.48)}
+.hero-copy{position:absolute;inset:0;z-index:2;display:grid;place-content:center;justify-items:center;text-align:center;gap:22px;padding:110px 20px 80px}
+.hero-copy h1{font-size:clamp(84px,17vw,250px);line-height:.84;letter-spacing:.01em}
+.hero-copy .trio{font-family:var(--display);font-size:clamp(20px,3vw,34px);letter-spacing:.14em}
+.hero-copy .trio b{color:var(--gold);font-weight:400}
+.hero-copy .loc{color:var(--mute)}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:8px}
+.hero-foot{position:absolute;z-index:2;left:24px;right:24px;bottom:22px;display:flex;justify-content:space-between;color:var(--mute)}
+.seq>*{animation:up 1.1s cubic-bezier(.2,.7,.2,1) both}
+.seq>*:nth-child(1){animation-delay:.2s}.seq>*:nth-child(2){animation-delay:.4s}.seq>*:nth-child(3){animation-delay:.65s}.seq>*:nth-child(4){animation-delay:.85s}.seq>*:nth-child(5){animation-delay:1.05s}
+@keyframes up{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+
+/* scroll reveal: progressive enhancement, content visible without support */
+@supports (animation-timeline:view()){
+  .rv{animation:rv linear both;animation-timeline:view();animation-range:entry 0% cover 25%}
+  @keyframes rv{from{opacity:.2;transform:translateY(46px)}to{opacity:1;transform:none}}
+}
+
+/* WELCOME (cream) */
+.cream{background:var(--cream);color:var(--ink)}
+.welcome{margin:var(--g);margin-bottom:0;border-radius:var(--r);padding:clamp(56px,9vw,120px) clamp(22px,6vw,90px)}
+.welcome-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:40px}
+.welcome .label{color:var(--mute-dark)}
+.welcome h2{font-size:clamp(44px,6.4vw,92px)}
+.welcome p.body{margin-top:26px;max-width:52ch;color:#4A4038;font-size:16px}
+.welcome .btn{margin-top:34px}
+.facts{display:flex;flex-wrap:wrap;gap:34px;margin-top:56px;padding-top:28px;border-top:1px solid var(--line-l)}
+.facts div{display:grid;gap:2px}
+.facts b{font-family:var(--display);font-weight:400;font-size:48px;line-height:1}
+.facts span{font-size:12px;color:var(--mute-dark);letter-spacing:.08em}
+
+/* MARQUEE */
+.strip{margin-top:var(--g);overflow:hidden}
+.track{display:flex;gap:10px;width:max-content;animation:marq 60s linear infinite}
+.strip:hover .track{animation-play-state:paused}
+.track .ph{width:clamp(180px,20vw,280px);aspect-ratio:3/4;border-radius:12px;flex:none}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* DISHES (dark) */
+.dishes{padding-block:clamp(90px,12vw,150px)}
+.center-head{text-align:center;display:grid;gap:18px;justify-items:center}
+.center-head .label{color:var(--gold)}
+.center-head h2{font-size:clamp(48px,7.5vw,108px)}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:64px}
+.dcard{border-radius:14px;aspect-ratio:3/4.3;border:1px solid var(--line-d);display:block}
+.dcard::after{content:"";position:absolute;inset:0;background:rgba(17,13,11,.28);transition:background .5s}
+.dcard:hover img{transform:scale(1.07)}
+.dcard:hover::after{background:rgba(17,13,11,.12)}
+.dcard .top,.dcard .bot{position:absolute;z-index:2;left:16px;right:16px}
+.dcard .top{top:16px}
+.dcard .top h3{font-size:clamp(22px,2.2vw,30px)}
+.dcard .top p{font-size:12px;margin-top:8px;color:var(--cream-2);max-width:26ch;line-height:1.45}
+.dcard .bot{bottom:16px;display:flex;justify-content:space-between;align-items:center}
+.chip{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:7px 11px;border-radius:999px;background:rgba(23,19,17,.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.chip.gold{background:var(--gold);color:var(--ink)}
+.arrow{width:38px;height:38px;border-radius:50%;background:var(--cream);color:var(--ink);display:grid;place-items:center;transition:transform .4s,background .3s}
+.arrow svg{width:16px;height:16px}
+.dcard:hover .arrow{transform:rotate(-45deg);background:var(--gold)}
+
+/* PANUOZZO SPLIT */
+.pan{display:grid;grid-template-columns:1fr 1.15fr;gap:var(--g);padding-inline:var(--g)}
+.pan-left{border-radius:var(--r);padding:clamp(40px,6vw,80px) clamp(24px,4.5vw,64px);display:flex;flex-direction:column;gap:28px}
+.pan-left .label{color:var(--mute-dark)}
+.pan-left h2{font-size:clamp(52px,7vw,104px)}
+.pan-left h2 .it{display:block;font-size:.42em;line-height:1.1;margin-top:14px;color:var(--wine)}
+.pan-mini{display:grid;grid-template-columns:150px 1fr;gap:22px;align-items:center}
+.pan-mini .ph{aspect-ratio:1;border-radius:12px}
+.pan-mini p{color:#4A4038;font-size:15px}
+.steps{list-style:none;margin:auto 0 0;padding:22px 0 0;border-top:1px solid var(--line-l);display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px}
+.steps li{font-family:var(--display);font-size:20px;letter-spacing:.04em;display:flex;align-items:center;gap:10px}
+.steps li::after{content:"→";font-family:var(--body);color:var(--brass);font-size:16px}
+.steps li:last-child::after{content:none}
+.steps li:last-child{background:var(--ink);color:var(--gold);padding:5px 12px;border-radius:999px}
+.pan-right{border-radius:var(--r);min-height:680px}
+.pan-right::after{content:"";position:absolute;inset:0;background:rgba(17,13,11,.42)}
+.pan-right .ov{position:absolute;z-index:2;left:clamp(22px,4vw,48px);right:clamp(22px,4vw,48px);bottom:clamp(22px,4vw,48px);display:grid;gap:18px}
+.pan-right .ov .label{color:var(--gold)}
+.pan-right h3{font-size:clamp(56px,8vw,120px)}
+.pan-right .chips{display:flex;flex-wrap:wrap;gap:8px}
+.pan-right p{max-width:44ch;color:var(--cream-2)}
+.pan-right .row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.pan-tag{position:absolute;z-index:2;top:22px;right:22px}
+
+/* CARTE */
+.carte{margin:var(--g);border-radius:var(--r);padding:clamp(48px,7vw,96px) clamp(22px,5vw,72px)}
+.carte-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,80px)}
+.carte h2{font-size:clamp(56px,8vw,120px)}
+.carte .sub{color:#4A4038;margin-top:16px;max-width:40ch}
+.tabs{display:flex;gap:8px;margin-top:34px;flex-wrap:wrap}
+.tab{min-height:46px;padding:0 20px;border-radius:999px;border:1px solid var(--line-l);background:transparent;color:var(--ink);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;transition:background .3s,color .3s,border-color .3s}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.tab .n{color:var(--brass);margin-left:6px}
+.list{margin-top:26px}
+.item{display:grid;grid-template-columns:1fr auto;gap:2px 16px;padding:18px 0;border-bottom:1px solid var(--line-l)}
+.item h4{font-size:26px;letter-spacing:.02em}
+.item p{grid-column:1/-1;font-size:13px;color:#5C5047}
+.item .sigdot{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--wine);align-self:center}
+.pics{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-content:start}
+.pic{display:grid;gap:10px}
+.pic .ph{aspect-ratio:4/5;border-radius:12px}
+.pic.wide{grid-column:1/-1}
+.pic.wide .ph{aspect-ratio:16/10}
+.pic figcaption{display:flex;justify-content:space-between;gap:10px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.pic figcaption span:last-child{color:var(--mute-dark);font-weight:500;letter-spacing:.06em;text-transform:none}
+.pics .ph img{animation:fadeIn .6s ease both}
+@keyframes fadeIn{from{opacity:.3}to{opacity:1}}
+.carte-foot{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+
+/* ONE DOUGH */
+.dough{margin:0 var(--g);border-radius:var(--r);background:var(--olive);padding:clamp(48px,7vw,96px) clamp(22px,5vw,72px)}
+.dough-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:clamp(36px,5vw,80px);align-items:start}
+.dough .label{color:var(--gold)}
+.dough h2{font-size:clamp(52px,7vw,104px);margin-top:16px}
+.dough p.body{color:var(--cream-2);margin-top:20px;max-width:42ch}
+.prods{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
+.prod{min-height:46px;padding:0 18px;border-radius:999px;border:1px solid rgba(243,235,221,.3);background:transparent;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.prod[aria-pressed="true"]{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.note{font-size:13px;color:var(--cream-2);margin-top:16px;min-height:3em}
+.matrix{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px;border-top:1px solid rgba(243,235,221,.18)}
+.ing{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:15px 0;border-bottom:1px solid rgba(243,235,221,.18);transition:opacity .35s}
+.ing span{font-family:var(--display);font-size:24px;text-transform:uppercase;letter-spacing:.02em}
+.ing i{display:flex;gap:5px;font-style:normal}
+.ing i b{width:24px;height:24px;border-radius:50%;border:1px solid rgba(243,235,221,.35);display:grid;place-items:center;font-size:9px;font-weight:700;color:rgba(243,235,221,.35)}
+.ing i b.on{background:var(--cream);color:var(--ink);border-color:var(--cream)}
+.matrix.focus .ing{opacity:.25}
+.matrix.focus .ing.hit{opacity:1}
+.matrix.focus .ing.hit span{color:var(--gold)}
+.dough .statement{font-family:var(--display);font-size:clamp(30px,4vw,52px);text-transform:uppercase;line-height:1;margin-top:clamp(56px,7vw,90px);max-width:24ch}
+.dough .statement em{font-style:normal;color:var(--gold)}
+
+/* NOTTE */
+.notte{margin:var(--g);border-radius:var(--r);min-height:max(760px,100svh)}
+.notte::after{content:"";position:absolute;inset:0;background:rgba(12,9,8,.5)}
+.notte-copy{position:absolute;inset:0;z-index:2;display:grid;place-content:center;justify-items:center;text-align:center;gap:18px;padding:120px 20px}
+.notte-copy .label{color:var(--gold)}
+.notte-copy h2{font-size:clamp(96px,19vw,280px);line-height:.82}
+.notte-copy .tag{font-size:clamp(30px,4vw,52px);color:var(--cream)}
+.notte-copy .trio{color:var(--mute);margin-top:6px}
+.notte-copy .btn{margin-top:18px}
+.float{position:absolute;z-index:3;width:min(250px,60vw);background:var(--cream);color:var(--ink);border-radius:12px;padding:18px;display:grid;gap:8px;box-shadow:0 30px 60px -20px rgba(0,0,0,.6);animation:bob 7s ease-in-out infinite alternate}
+.float .label{color:var(--wine);font-size:10px}
+.float h4{font-size:26px}
+.float p{font-size:12px;color:#4A4038;line-height:1.5}
+.float.f1{left:5%;top:14%;transform:rotate(-3deg)}
+.float.f2{right:6%;top:22%;transform:rotate(3deg);animation-delay:-2s;background:var(--gold)}
+.float.f3{left:9%;bottom:10%;transform:rotate(2deg);animation-delay:-4s}
+.float.f2 .label{color:var(--ink)}
+@keyframes bob{from{translate:0 0}to{translate:0 -14px}}
+
+/* ESPACE */
+.espace{padding:clamp(70px,9vw,120px) var(--g) 0}
+.espace-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--g);margin-top:56px}
+.room{border-radius:var(--r);aspect-ratio:4/5}
+.room::after{content:"";position:absolute;inset:0;background:rgba(17,13,11,.3)}
+.room .cap{position:absolute;z-index:2;left:24px;right:24px;bottom:24px;display:grid;gap:12px}
+.room .chip{justify-self:start}
+.room h3{font-size:clamp(48px,6vw,88px)}
+.room p{color:var(--cream-2);max-width:36ch}
+.room:hover img{transform:scale(1.05)}
+.same{font-family:var(--display);text-transform:uppercase;text-align:center;font-size:clamp(52px,10vw,150px);line-height:.9;padding-block:clamp(70px,10vw,130px)}
+.same span{display:block;color:var(--gold)}
+
+/* FINAL */
+.final{margin:0 var(--g) var(--g);border-radius:var(--r);padding:clamp(70px,10vw,140px) clamp(20px,4vw,60px);text-align:center}
+.wait{display:flex;align-items:center;justify-content:center;gap:clamp(14px,3vw,40px)}
+.wait h2{font-size:clamp(44px,8vw,124px)}
+.wait .ph{width:clamp(110px,16vw,230px);aspect-ratio:3/4;border-radius:12px;flex:none;transform:rotate(-3deg)}
+.final .meta{margin-top:40px;color:var(--mute-dark)}
+.final .hero-ctas{margin-top:28px}
+
+/* FOOTER */
+footer{padding:clamp(56px,7vw,90px) var(--g) calc(40px + env(safe-area-inset-bottom,0px))}
+.foot{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:32px}
+.foot .logo{font-size:clamp(56px,8vw,110px);line-height:.9;display:block}
+.foot h5{margin:0 0 12px;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.foot p,.foot a{display:block;font-size:14px;color:var(--mute);line-height:1.9}
+.foot a:hover{color:var(--cream)}
+.copy{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:56px;padding-top:22px;border-top:1px solid var(--line-d);font-size:12px;color:var(--mute-dark)}
+
+/* MOBILE BAR */
+.bbar{display:none;position:fixed;z-index:50;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));gap:8px;padding:8px;border-radius:999px;background:rgba(23,19,17,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line-d)}
+.bbar .btn{flex:1;min-height:48px}
+
+/* MODAL */
+.modal{position:fixed;inset:0;z-index:90;background:rgba(12,9,8,.82);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:grid;place-items:center;padding:16px}
+.sheet{position:relative;width:min(540px,100%);max-height:calc(100svh - 32px);overflow:auto;background:var(--cream);color:var(--ink);border-radius:var(--r);padding:34px 28px}
+.sheet .label{color:var(--wine)}
+.sheet h3{font-size:46px;margin:10px 0 8px}
+.sheet .lede{color:#4A4038;font-size:14px}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+.fld{display:grid;gap:6px;min-width:0}
+.fld.full{grid-column:1/-1}
+.fld label{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--mute-dark)}
+.fld input,.fld select{width:100%;min-height:50px;padding:0 14px;border-radius:12px;border:1px solid var(--line-l);background:#FBF6EE;color:var(--ink);font:inherit;font-size:16px;color-scheme:light}
+.fld input:focus,.fld select:focus{outline:0;border-color:var(--ink)}
+.err{color:var(--wine);font-size:13px;margin-top:12px;font-weight:600}
+.acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.summary{margin-top:18px;padding:18px;border-radius:12px;background:var(--ink);color:var(--cream);white-space:pre-line;font-size:15px}
+.fine{font-size:12px;color:var(--mute-dark);margin-top:14px}
+.x{position:absolute;top:12px;right:12px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line-l);background:transparent;color:var(--ink);font-size:22px;line-height:1}
+
+/* RESPONSIVE */
+@media (max-width:1080px){
+  .links,.nav .btn{display:none}
+  .burger{display:block}
+  .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pan,.carte-grid,.dough-grid,.welcome-grid{grid-template-columns:1fr}
+  .pan-right{min-height:620px}
+  .float.f3{display:none}
+}
+@media (max-width:720px){
+  body{font-size:14px}
+  .bbar{display:flex}
+  footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
+  .hero-foot{display:none}
+  .cards{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin-inline:calc(var(--g)*-1);padding-inline:var(--g);scrollbar-width:none}
+  .cards::-webkit-scrollbar{display:none}
+  .dcard{flex:0 0 78%;scroll-snap-align:center}
+  .pan-mini{grid-template-columns:96px 1fr}
+  .matrix{grid-template-columns:1fr}
+  .espace-grid{grid-template-columns:1fr}
+  .room{aspect-ratio:4/4.6}
+  .float{width:200px;padding:14px}
+  .float h4{font-size:20px}
+  .float.f1{top:7%;left:4%}
+  .float.f2{top:auto;bottom:7%;right:4%}
+  .wait{flex-wrap:wrap}
+  .wait .ph{order:-1;width:140px}
+  .wait h2{flex-basis:100%}
+  .fields{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr 1fr}
+  .foot>div:first-child{grid-column:1/-1}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="nav-bar">
+    <a class="logo" href="#top">CHEZ PINO</a>
+    <ul class="links">
+      <li><a href="#concept">CONCEPT</a></li>
+      <li><a href="#carte">CARTE</a></li>
+      <li><a href="#panuozzo">PANUOZZO</a></li>
+      <li><a href="#notte">PINO NOTTE</a></li>
+      <li><a href="#espace">ESPACE</a></li>
+    </ul>
+    <button class="btn btn-gold" type="button" data-reserve>Réserver <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8h12M9 3l5 5-5 5"/></svg></button>
+    <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="overlay"><i></i><i></i></button>
+  </div>
+</header>
+
+<nav class="overlay" id="overlay" hidden>
+  <a class="big" href="#concept">Concept</a>
+  <a class="big" href="#carte">Carte</a>
+  <a class="big" href="#panuozzo">Panuozzo</a>
+  <a class="big" href="#notte">Pino Notte</a>
+  <a class="big" href="#espace">Espace</a>
+  <button class="btn btn-gold" type="button" data-reserve>Réserver une table</button>
+</nav>
+
+<main>
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="ph hero-ph">
+    <img data-img="hero" data-w="2000" alt="Panuozzo grillé et coupé, garni de légumes et de roquette, sur une ardoise sombre" fetchpriority="high">
+    <div class="hero-copy seq">
+      <p class="label">Hay Riad · Rabat</p>
+      <h1>Chez Pino</h1>
+      <p class="trio">Pizza · Pasta · <b>Panuozzo</b></p>
+      <p class="loc it" style="font-size:clamp(20px,2.4vw,28px);color:var(--cream-2)">Une pâte. Trois façons.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-gold" href="#concept">Découvrir le concept <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8h12M9 3l5 5-5 5"/></svg></a>
+        <a class="btn btn-line" href="#carte">Voir la carte</a>
+      </div>
+    </div>
+    <div class="hero-foot label"><span>Midi · Soir</span><span>Sur place · À emporter · Livraison</span></div>
+  </div>
+</section>
+
+<!-- WELCOME -->
+<section class="cream welcome" id="concept">
+  <div class="welcome-grid">
+    <p class="label rv">Bienvenue chez Pino</p>
+    <div class="rv">
+      <h2>Trois essentiels. Une seule pâte. Aucun compromis.</h2>
+      <p class="body">Chez Pino devient une adresse italienne contemporaine, pensée pour Rabat. Une carte courte où chaque plat est maîtrisé, une signature que personne d'autre ne sert dans le quartier, et le soir, une autre atmosphère à l'étage.</p>
+      <a class="btn btn-dark" href="#panuozzo">La signature <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8h12M9 3l5 5-5 5"/></svg></a>
+      <div class="facts">
+        <div><b>16</b><span>plats, pas un de plus</span></div>
+        <div><b>1</b><span>pâte pour toute la carte</span></div>
+        <div><b>2</b><span>étages, deux énergies</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip" aria-hidden="true">
+  <div class="track" id="track"></div>
+</div>
+
+<!-- DISHES -->
+<section class="dishes frame" id="incontournables">
+  <div class="inner">
+    <div class="center-head rv">
+      <p class="label">Nos incontournables</p>
+      <h2>Les plats qui<br>font revenir.</h2>
+    </div>
+    <div class="cards">
+      <a class="ph dcard rv" href="#carte" data-tab="pan">
+        <img data-img="panHands" data-w="700" alt="Panuozzo tenu à deux mains" loading="lazy">
+        <div class="top"><h3>Pino Classico</h3><p>Mozzarella · Dinde fumée · Tomate · Basilic</p></div>
+        <div class="bot"><span class="chip gold">Panuozzo</span><span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></div>
+      </a>
+      <a class="ph dcard rv" href="#carte" data-tab="piz">
+        <img data-img="pizzaOven" data-w="700" alt="Pizza margherita au four à bois" loading="lazy">
+        <div class="top"><h3>Margherita</h3><p>Tomate · Fior di latte · Basilic · Huile d'olive</p></div>
+        <div class="bot"><span class="chip">Pizza</span><span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></div>
+      </a>
+      <a class="ph dcard rv" href="#carte" data-tab="pan">
+        <img data-img="panPaper" data-w="700" alt="Panuozzo emballé à emporter" loading="lazy">
+        <div class="top"><h3>Pino Verde</h3><p>Mozzarella · Pesto · Courgette · Poivron · Roquette</p></div>
+        <div class="bot"><span class="chip gold">Panuozzo</span><span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></div>
+      </a>
+      <a class="ph dcard rv" href="#carte" data-tab="pas">
+        <img data-img="penne" data-w="700" alt="Penne à la bolognese" loading="lazy">
+        <div class="top"><h3>Bolognese</h3><p>Bœuf · Tomate · Parmesan</p></div>
+        <div class="bot"><span class="chip">Pasta</span><span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PANUOZZO -->
+<section class="pan" id="panuozzo">
+  <div class="cream pan-left rv">
+    <p class="label">La signature</p>
+    <h2>Le Panuozzo<span class="it">Même pâte. Nouvelle expérience.</span></h2>
+    <div class="pan-mini">
+      <div class="ph"><img data-img="dough" data-w="400" alt="Mains qui façonnent la pâte" loading="lazy"></div>
+      <p>La pâte de nos pizzas est cuite, ouverte, garnie, puis repassée au four. Croustillante dehors, aérienne dedans, fondante au cœur.</p>
+    </div>
+    <ol class="steps" aria-label="Préparation du panuozzo">
+      <li>Pâte</li><li>Four</li><li>Garniture</li><li>Four</li><li>Panuozzo</li>
+    </ol>
+  </div>
+  <div class="ph pan-right rv">
+    <img data-img="pizzaiolo" data-w="1400" alt="Pizzaiolo devant le four à bois" loading="lazy">
+    <span class="chip gold pan-tag">Né à Gragnano, près de Naples</span>
+    <div class="ov">
+      <p class="label">Une pâte · un four · une signature</p>
+      <h3>Cuit deux fois.</h3>
+      <div class="chips"><span class="chip">Croustillant dehors</span><span class="chip">Aérien dedans</span><span class="chip">Fondant au cœur</span></div>
+      <div class="row">
+        <button class="btn btn-gold" type="button" data-goto="pan">Voir les 5 panuozzi <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8h12M9 3l5 5-5 5"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARTE -->
+<section class="cream carte" id="carte">
+  <div class="carte-grid">
+    <div>
+      <p class="label rv" style="color:var(--mute-dark)">La carte</p>
+      <h2 class="rv">Courte.<br>Précise.</h2>
+      <p class="sub rv">Seize plats. Pizza, pasta, panuozzo. Sur place, à emporter ou en livraison.</p>
+      <div class="tabs" role="tablist" aria-label="Catégories">
+        <button class="tab" role="tab" type="button" id="tab-pan" data-cat="pan" aria-selected="true">Panuozzo<span class="n">5</span></button>
+        <button class="tab" role="tab" type="button" id="tab-piz" data-cat="piz" aria-selected="false">Pizza<span class="n">6</span></button>
+        <button class="tab" role="tab" type="button" id="tab-pas" data-cat="pas" aria-selected="false">Pasta<span class="n">5</span></button>
+      </div>
+      <div class="list" id="list" role="tabpanel" aria-live="polite"></div>
+      <div class="carte-foot">
+        <a class="btn btn-dark wa-order" href="#" target="_blank" rel="noopener">Commander sur WhatsApp</a>
+      </div>
+    </div>
+    <div class="pics" id="pics"></div>
+  </div>
+</section>
+
+<!-- ONE DOUGH -->
+<section class="dough" id="cuisine">
+  <div class="dough-grid">
+    <div>
+      <p class="label rv">Une seule cuisine</p>
+      <h2 class="rv">Une pâte.<br>Trois façons.</h2>
+      <p class="body rv">Dix ingrédients circulent d'un plat à l'autre. Moins de stock, plus de fraîcheur, la même exigence partout.</p>
+      <div class="prods" role="group" aria-label="Choisir un produit">
+        <button class="prod" type="button" data-p="0" aria-pressed="false">Pizza</button>
+        <button class="prod" type="button" data-p="1" aria-pressed="false">Pasta</button>
+        <button class="prod" type="button" data-p="2" aria-pressed="false">Panuozzo</button>
+      </div>
+      <p class="note" id="note">Choisissez un produit pour voir ce qu'il partage avec le reste de la carte.</p>
+    </div>
+    <div class="matrix" id="matrix"></div>
+  </div>
+  <p class="statement rv">Une carte courte. Une cuisine précise. <em>Une identité claire.</em></p>
+</section>
+
+<!-- PINO NOTTE -->
+<section class="ph notte" id="notte">
+  <img data-img="night" data-w="2000" alt="Salle de restaurant tamisée, lampes chaudes et tables intimes" loading="lazy">
+  <div class="float f1"><p class="label">Le soir · à l'étage</p><h4>19h30 · 00h</h4><p>Lumière tamisée, tables intimes, la même cuisine.</p></div>
+  <div class="float f2"><p class="label">La musique</p><h4>Afro · Organic · Deep house</h4><p>Électro méditerranéenne, touches maghrébines. Jamais trop fort.</p></div>
+  <div class="float f3"><p class="label">À partager</p><h4>Pino Beef</h4><p>Bœuf · Mozzarella · Oignon caramélisé · Sauce poivre</p></div>
+  <div class="notte-copy">
+    <p class="label">Pas un événement. Une atmosphère.</p>
+    <h2>Pino Notte</h2>
+    <p class="tag it">Italian food. After dark.</p>
+    <p class="label trio">Cuisine · Musique · Atmosphère</p>
+    <button class="btn btn-gold" type="button" data-reserve>Réserver une table à l'étage <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8h12M9 3l5 5-5 5"/></svg></button>
+  </div>
+</section>
+
+<!-- ESPACE -->
+<section class="espace" id="espace">
+  <div class="inner">
+    <div class="center-head rv">
+      <p class="label">L'espace</p>
+      <h2>Du jour à la nuit.</h2>
+    </div>
+    <div class="espace-grid">
+      <div class="ph room rv">
+        <img data-img="day" data-w="1200" alt="Salle lumineuse en journée" loading="lazy">
+        <div class="cap"><span class="chip gold">Rez-de-chaussée · le jour</span><h3>Chez Pino</h3><p>Le midi, à emporter, en livraison. Cuisine ouverte, comptoir, l'énergie du quartier.</p></div>
+      </div>
+      <div class="ph room rv">
+        <img data-img="upstairs" data-w="1200" alt="Salle à manger du soir" loading="lazy">
+        <div class="cap"><span class="chip">À l'étage · le soir</span><h3>Pino Notte</h3><p>Lumière ambrée, bois sombre, tables intimes. Une adresse où l'on reste.</p></div>
+      </div>
+    </div>
+  </div>
+  <p class="same rv">Même cuisine.<span>Autre énergie.</span></p>
+</section>
+
+<!-- FINAL -->
+<section class="cream final" id="reserver">
+  <div class="wait rv">
+    <h2>Votre table</h2>
+    <div class="ph"><img data-img="pull" data-w="500" alt="Part de pizza qui file" loading="lazy"></div>
+    <h2>vous attend</h2>
+  </div>
+  <p class="label meta">Chez Pino · Pizza · Pasta · Panuozzo · Hay Riad, Rabat</p>
+  <div class="hero-ctas">
+    <button class="btn btn-dark" type="button" data-reserve>Réserver une table</button>
+    <a class="btn btn-gold wa-order" href="#" target="_blank" rel="noopener">Commander sur WhatsApp</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="foot">
+    <div><span class="logo">CHEZ<br>PINO</span></div>
+    <div><h5>Adresse</h5><p>Hay Riad, Rabat</p><p style="color:var(--mute-dark)">Adresse exacte à confirmer</p></div>
+    <div><h5>Horaires</h5><p>Midi : 12h · 15h</p><p>Soir : 19h30 · 00h</p><p style="color:var(--mute-dark)">Horaires indicatifs</p></div>
+    <div><h5>Contact</h5><a href="#" data-reserve-link>Réserver</a><a class="wa-order" href="#" target="_blank" rel="noopener">WhatsApp</a><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></div>
+  </div>
+  <div class="copy"><span>© 2026 Chez Pino · Pino Notte</span><span>Concept et site : Amplify Growth Studio</span></div>
+</footer>
+
+<div class="bbar">
+  <a class="btn btn-line" href="#carte">Carte</a>
+  <button class="btn btn-gold" type="button" data-reserve>Réserver</button>
+</div>
+
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="mt">
+  <div class="sheet">
+    <button class="x" type="button" id="mx" aria-label="Fermer">×</button>
+    <p class="label">Chez Pino · Pino Notte</p>
+    <h3 id="mt">Réserver une table</h3>
+    <p class="lede">Remplissez votre demande, puis envoyez-la sur WhatsApp. Nous confirmons rapidement.</p>
+    <form id="rf" novalidate>
+      <div class="fields">
+        <div class="fld full"><label for="rn">Nom</label><input id="rn" autocomplete="name"></div>
+        <div class="fld full"><label for="rp">Téléphone</label><input id="rp" type="tel" inputmode="tel" autocomplete="tel"></div>
+        <div class="fld"><label for="rd">Date</label><input id="rd" type="date"></div>
+        <div class="fld"><label for="rt">Heure</label><select id="rt"><option>12:30</option><option>13:30</option><option>19:30</option><option selected>20:30</option><option>21:30</option><option>22:30</option></select></div>
+        <div class="fld"><label for="rx">Personnes</label><select id="rx"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>Plus de 8</option></select></div>
+        <div class="fld"><label for="rz">Salle</label><select id="rz"><option>À l'étage · Pino Notte</option><option>Rez-de-chaussée</option></select></div>
+      </div>
+      <p class="err" id="re" hidden></p>
+      <div class="acts"><button class="btn btn-dark" type="submit">Préparer la demande</button></div>
+    </form>
+    <div id="rdone" hidden>
+      <div class="summary" id="rs"></div>
+      <div class="acts"><a class="btn btn-gold" id="rw" href="#" target="_blank" rel="noopener">Envoyer sur WhatsApp</a><button class="btn btn-dark" type="button" id="redit">Modifier</button></div>
+      <p class="fine">Votre table est confirmée dès notre réponse sur WhatsApp.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ==== À REMPLACER ==== */
+const WHATSAPP = "212600000000"; // numéro du restaurant, format international sans +
+/* Photos : remplacez chaque URL par vos propres photos (ex. "img/hero.jpg") */
+const IMAGES = {
+  hero:      "https://images.unsplash.com/photo-1621852004158-f3bc188ace2d",
+  panSlate:  "https://images.unsplash.com/photo-1621852004158-f3bc188ace2d",
+  panHands:  "https://images.unsplash.com/photo-1639667910197-888506ab6827",
+  panPaper:  "https://images.unsplash.com/photo-1727606533010-c43e41952e99",
+  dough:     "https://images.unsplash.com/photo-1532460734809-e7f8475ca917",
+  pizzaiolo: "https://images.unsplash.com/photo-1570946581013-83b974ed3fb7",
+  pizzaOven: "https://images.unsplash.com/photo-1622880833523-7cf1c0bd4296",
+  fire:      "https://images.unsplash.com/photo-1606152196365-d1ce5ea838b5",
+  margherita:"https://images.unsplash.com/photo-1574071318508-1cdbab80d002",
+  pizzaSlice:"https://images.unsplash.com/photo-1513104890138-7c749659a591",
+  pizzaTop:  "https://images.unsplash.com/photo-1651981075280-9a9e01acbff0",
+  pizzaBoard:"https://images.unsplash.com/photo-1579751626657-72bc17010498",
+  cheese:    "https://images.unsplash.com/photo-1593504049359-74330189a345",
+  pull:      "https://images.unsplash.com/photo-1724734333243-17c38ef0cdfd",
+  basil:     "https://images.unsplash.com/photo-1664309688328-578b4939b4cf",
+  penne:     "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9",
+  spaghetti: "https://images.unsplash.com/photo-1571175534150-72cd2b5a6039",
+  arrabbiata:"https://images.unsplash.com/photo-1676300184847-4ee4030409c0",
+  night:     "https://images.unsplash.com/photo-1552960226-639240203497",
+  upstairs:  "https://images.unsplash.com/photo-1709548145082-04d0cde481d4",
+  day:       "https://images.unsplash.com/photo-1555396273-367ea4eb4db5"
+};
+const src=(k,w)=>{const u=IMAGES[k];return /unsplash\.com/.test(u)?`${u}?auto=format&fit=crop&w=${w}&q=78`:u};
+const wa=t=>"https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(t);
+
+function setImg(el){
+  const k=el.dataset.img,w=el.dataset.w||900;
+  el.onerror=()=>el.closest(".ph")&&el.closest(".ph").classList.add("broken");
+  el.src=src(k,w);
+}
+
+/* strip */
+const STRIP=["fire","margherita","panPaper","basil","spaghetti","pizzaTop","cheese","dough","arrabbiata"];
+document.getElementById("track").innerHTML=[...STRIP,...STRIP].map(k=>`<div class="ph"><img data-img="${k}" data-w="500" alt="" loading="lazy"></div>`).join("");
+document.querySelectorAll("img[data-img]").forEach(setImg);
+
+/* nav */
+const nav=document.getElementById("nav");
+const sc=()=>nav.classList.toggle("scrolled",scrollY>60);sc();addEventListener("scroll",sc,{passive:true});
+const burger=document.getElementById("burger"),ov=document.getElementById("overlay");
+function menu(o){ov.hidden=!o;burger.setAttribute("aria-expanded",o);burger.setAttribute("aria-label",o?"Fermer le menu":"Ouvrir le menu");document.body.style.overflow=o?"hidden":""}
+burger.onclick=()=>menu(ov.hidden);
+ov.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>menu(false)));
+
+document.querySelectorAll(".wa-order").forEach(a=>a.href=wa("Bonjour Chez Pino, je souhaite passer une commande."));
+
+/* carte */
+const MENU={
+  pan:{items:[
+    ["Pino Classico","Mozzarella · Dinde fumée · Tomate · Basilic",1],
+    ["Pino Piccante","Mozzarella · Salami de bœuf piquant · Tomate · Chili"],
+    ["Pino Pollo","Poulet rôti · Mozzarella · Pesto · Poivron"],
+    ["Pino Beef","Bœuf · Mozzarella · Oignon caramélisé · Sauce poivre",1],
+    ["Pino Verde","Mozzarella · Pesto · Courgette · Poivron · Roquette"]],
+    pics:[["panSlate","Pino Verde","Panuozzo",1],["panHands","Pino Classico","À la main"],["panPaper","À emporter","Emballé chaud"]]},
+  piz:{items:[
+    ["Margherita","Tomate · Fior di latte · Basilic · Huile d'olive",1],
+    ["Piccante","Tomate · Fior di latte · Salami de bœuf piquant · Chili"],
+    ["Fumé","Tomate · Fior di latte · Dinde fumée · Champignons"],
+    ["Pollo","Tomate · Fior di latte · Poulet rôti · Champignons · Oignons"],
+    ["Vegetariana","Tomate · Fior di latte · Courgette · Poivron · Champignons · Olives"],
+    ["Tonno","Tomate · Fior di latte · Thon · Oignon rouge · Olives"]],
+    pics:[["pizzaOven","Margherita","Au four",1],["margherita","Basilic frais","Fior di latte"],["pizzaSlice","Bords alvéolés","Pâte maison"]]},
+  pas:{items:[
+    ["Pomodoro","Tomate · Basilic · Parmesan"],
+    ["Arrabbiata","Tomate · Ail · Chili · Parmesan"],
+    ["Pollo Crema","Poulet · Crème · Champignons · Parmesan"],
+    ["Bolognese","Bœuf · Tomate · Parmesan",1],
+    ["Pesto Pollo","Pesto · Poulet · Parmesan · Tomates cerises"]],
+    pics:[["penne","Bolognese","Bœuf mijoté",1],["spaghetti","Pomodoro","Le classique"],["arrabbiata","Arrabbiata","Piquante"]]}
+};
+const list=document.getElementById("list"),pics=document.getElementById("pics"),tabs=[...document.querySelectorAll(".tab")];
+function showCat(c){
+  tabs.forEach(t=>t.setAttribute("aria-selected",t.dataset.cat===c));
+  list.setAttribute("aria-labelledby","tab-"+c);
+  list.innerHTML=MENU[c].items.map(([n,d,s])=>`<div class="item"><h4>${n}</h4>${s?'<span class="sigdot">Le favori</span>':'<span></span>'}<p>${d}</p></div>`).join("");
+  pics.innerHTML=MENU[c].pics.map(([k,a,b,w])=>`<figure class="pic${w?" wide":""}" style="margin:0"><div class="ph"><img data-img="${k}" data-w="${w?1100:600}" alt="${a}"></div><figcaption><span>${a}</span><span>${b}</span></figcaption></figure>`).join("");
+  pics.querySelectorAll("img").forEach(setImg);
+}
+tabs.forEach(t=>t.onclick=()=>showCat(t.dataset.cat));
+showCat("pan");
+document.querySelectorAll("[data-tab],[data-goto]").forEach(el=>el.addEventListener("click",e=>{
+  const c=el.dataset.tab||el.dataset.goto;showCat(c);
+  if(el.dataset.goto){e.preventDefault();document.getElementById("carte").scrollIntoView({behavior:"smooth"})}
+}));
+
+/* ingredients */
+const ING=[["Tomate",[1,1,1]],["Poulet",[1,1,1]],["Basilic",[1,1,1]],["Mozzarella",[1,0,1]],["Bœuf",[0,1,1]],["Pesto",[0,1,1]],["Poivron",[1,0,1]],["Oignon",[1,0,1]],["Champignons",[1,1,0]],["Parmesan",[0,1,0]]];
+const P=["Pizza","Pasta","Panuozzo"],L=["Pz","Pa","Pn"];
+const mx=document.getElementById("matrix"),note=document.getElementById("note");
+mx.innerHTML=ING.map(([n,u])=>`<div class="ing" data-u="${u.join("")}"><span>${n}</span><i aria-label="${P.filter((_,k)=>u[k]).join(", ")}">${u.map((v,k)=>`<b class="${v?"on":""}" title="${P[k]}">${L[k]}</b>`).join("")}</i></div>`).join("");
+const prods=[...document.querySelectorAll(".prod")];
+prods.forEach(b=>b.onclick=()=>{
+  const was=b.getAttribute("aria-pressed")==="true";
+  prods.forEach(o=>o.setAttribute("aria-pressed","false"));
+  if(was){mx.classList.remove("focus");note.textContent="Choisissez un produit pour voir ce qu'il partage avec le reste de la carte.";return}
+  b.setAttribute("aria-pressed","true");
+  const k=+b.dataset.p;let hit=0,sh=0;
+  mx.querySelectorAll(".ing").forEach(r=>{const u=r.dataset.u.split("").map(Number),h=u[k]===1;r.classList.toggle("hit",h);if(h){hit++;if(u.reduce((a,c)=>a+c)>1)sh++}});
+  mx.classList.add("focus");
+  note.textContent=`${P[k]} : ${hit} de ces ingrédients, dont ${sh} partagés avec les autres produits.`;
+});
+
+/* reservation */
+const modal=document.getElementById("modal"),rf=document.getElementById("rf"),rdone=document.getElementById("rdone"),re=document.getElementById("re"),rd=document.getElementById("rd");
+let back=null;
+function openM(){back=document.activeElement;menu(false);modal.hidden=false;document.body.style.overflow="hidden";rf.hidden=false;rdone.hidden=true;setTimeout(()=>document.getElementById("rn").focus(),60)}
+function closeM(){modal.hidden=true;document.body.style.overflow="";back&&back.focus()}
+document.querySelectorAll("[data-reserve]").forEach(b=>b.addEventListener("click",openM));
+document.querySelector("[data-reserve-link]").addEventListener("click",e=>{e.preventDefault();openM()});
+document.getElementById("mx").onclick=closeM;
+modal.addEventListener("click",e=>{if(e.target===modal)closeM()});
+addEventListener("keydown",e=>{if(e.key==="Escape"&&!modal.hidden)closeM()});
+(()=>{const t=new Date(),iso=new Date(t-t.getTimezoneOffset()*6e4).toISOString().slice(0,10);rd.min=iso;rd.value=iso})();
+rf.addEventListener("submit",e=>{
+  e.preventDefault();
+  const n=document.getElementById("rn").value.trim(),p=document.getElementById("rp").value.trim(),d=rd.value,t=document.getElementById("rt").value,x=document.getElementById("rx").value,z=document.getElementById("rz").value;
+  const m=[];if(!n)m.push("votre nom");if(p.replace(/\D/g,"").length<9)m.push("un numéro de téléphone valide");if(!d)m.push("une date");
+  if(m.length){re.textContent="Il manque "+m.join(", ")+".";re.hidden=false;return}
+  re.hidden=true;
+  const dl=new Date(d+"T12:00").toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"});
+  document.getElementById("rs").textContent=`${n} · ${x} pers.\n${dl} à ${t}\n${z}`;
+  document.getElementById("rw").href=wa(`Bonjour Chez Pino, je souhaite réserver une table.\nNom : ${n}\nTéléphone : ${p}\nDate : ${dl}\nHeure : ${t}\nPersonnes : ${x}\nSalle : ${z}`);
+  rf.hidden=true;rdone.hidden=false;
+});
+document.getElementById("redit").onclick=()=>{rf.hidden=false;rdone.hidden=true};
+</script>
+</body>
+</html>
