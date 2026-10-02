@@ -32,6 +32,7 @@
   color-scheme:dark;
 }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth;background:var(--ink)}
 body{margin:0;background:var(--ink);color:var(--cream);font-family:var(--body);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;max-width:100%}
@@ -270,24 +271,6 @@ footer{padding:clamp(56px,7vw,90px) var(--g) calc(40px + env(safe-area-inset-bot
 .bbar{display:none;position:fixed;z-index:50;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));gap:8px;padding:8px;border-radius:999px;background:rgba(23,19,17,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line-d)}
 .bbar .btn{flex:1;min-height:48px}
 
-/* MODAL */
-.modal{position:fixed;inset:0;z-index:90;background:rgba(12,9,8,.82);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:grid;place-items:center;padding:16px}
-.sheet{position:relative;width:min(540px,100%);max-height:calc(100svh - 32px);overflow:auto;background:var(--cream);color:var(--ink);border-radius:var(--r);padding:34px 28px}
-.sheet .label{color:var(--wine)}
-.sheet h3{font-size:46px;margin:10px 0 8px}
-.sheet .lede{color:#4A4038;font-size:14px}
-.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
-.fld{display:grid;gap:6px;min-width:0}
-.fld.full{grid-column:1/-1}
-.fld label{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--mute-dark)}
-.fld input,.fld select{width:100%;min-height:50px;padding:0 14px;border-radius:12px;border:1px solid var(--line-l);background:#FBF6EE;color:var(--ink);font:inherit;font-size:16px;color-scheme:light}
-.fld input:focus,.fld select:focus{outline:0;border-color:var(--ink)}
-.err{color:var(--wine);font-size:13px;margin-top:12px;font-weight:600}
-.acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
-.summary{margin-top:18px;padding:18px;border-radius:12px;background:var(--ink);color:var(--cream);white-space:pre-line;font-size:15px}
-.fine{font-size:12px;color:var(--mute-dark);margin-top:14px}
-.x{position:absolute;top:12px;right:12px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line-l);background:transparent;color:var(--ink);font-size:22px;line-height:1}
-
 /* RESPONSIVE */
 @media (max-width:1080px){
   .links,.nav .btn{display:none}
@@ -316,7 +299,6 @@ footer{padding:clamp(56px,7vw,90px) var(--g) calc(40px + env(safe-area-inset-bot
   .wait{flex-wrap:wrap}
   .wait .ph{order:-1;width:140px}
   .wait h2{flex-basis:100%}
-  .fields{grid-template-columns:1fr}
   .foot{grid-template-columns:1fr 1fr}
   .foot>div:first-child{grid-column:1/-1}
 }
@@ -503,7 +485,7 @@ footer{padding:clamp(56px,7vw,90px) var(--g) calc(40px + env(safe-area-inset-bot
     <h2>Pino Notte</h2>
     <p class="tag it">Italian food. After dark.</p>
     <p class="label trio">Cuisine · Musique · Atmosphère</p>
-    <button class="btn btn-gold" type="button" data-reserve>Réserver une table à l'étage <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8h12M9 3l5 5-5 5"/></svg></button>
+    <a class="btn btn-gold" href="#carte">Découvrir la carte du soir <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8h12M9 3l5 5-5 5"/></svg></a>
   </div>
 </section>
 
@@ -529,7 +511,7 @@ footer{padding:clamp(56px,7vw,90px) var(--g) calc(40px + env(safe-area-inset-bot
 </section>
 
 <!-- FINAL -->
-<section class="cream final" id="reserver">
+<section class="cream final" id="bienvenue">
   <div class="wait rv">
     <h2>Votre table</h2>
     <div class="ph"><img data-img="pull" data-w="500" alt="Part de pizza qui file" loading="lazy"></div>
@@ -537,7 +519,7 @@ footer{padding:clamp(56px,7vw,90px) var(--g) calc(40px + env(safe-area-inset-bot
   </div>
   <p class="label meta">Chez Pino · Pizza · Pasta · Panuozzo · Hay Riad, Rabat</p>
   <div class="hero-ctas">
-    <button class="btn btn-dark" type="button" data-reserve>Réserver une table</button>
+    <a class="btn btn-dark" href="#carte">Voir la carte</a>
     <a class="btn btn-gold wa-order" href="#" target="_blank" rel="noopener">Commander sur WhatsApp</a>
   </div>
 </section>
@@ -548,7 +530,7 @@ footer{padding:clamp(56px,7vw,90px) var(--g) calc(40px + env(safe-area-inset-bot
     <div><span class="logo">CHEZ<br>PINO</span></div>
     <div><h5>Adresse</h5><p>Hay Riad, Rabat</p><p style="color:var(--mute-dark)">Adresse exacte à confirmer</p></div>
     <div><h5>Horaires</h5><p>Midi : 12h · 15h</p><p>Soir : 19h30 · 00h</p><p style="color:var(--mute-dark)">Horaires indicatifs</p></div>
-    <div><h5>Contact</h5><a href="#" data-reserve-link>Réserver</a><a class="wa-order" href="#" target="_blank" rel="noopener">WhatsApp</a><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></div>
+    <div><h5>Contact</h5><a class="wa-order" href="#" target="_blank" rel="noopener">WhatsApp</a><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></div>
   </div>
   <div class="copy"><span>© 2026 Chez Pino · Pino Notte</span><span>Concept et site : Amplify Growth Studio</span></div>
 </footer>
@@ -556,32 +538,6 @@ footer{padding:clamp(56px,7vw,90px) var(--g) calc(40px + env(safe-area-inset-bot
 <div class="bbar">
   <a class="btn btn-line" href="#panuozzo">Panuozzo</a>
   <a class="btn btn-gold" href="#carte">La carte</a>
-</div>
-
-<div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="mt">
-  <div class="sheet">
-    <button class="x" type="button" id="mx" aria-label="Fermer">×</button>
-    <p class="label">Chez Pino · Pino Notte</p>
-    <h3 id="mt">Réserver une table</h3>
-    <p class="lede">Remplissez votre demande, puis envoyez-la sur WhatsApp. Nous confirmons rapidement.</p>
-    <form id="rf" novalidate>
-      <div class="fields">
-        <div class="fld full"><label for="rn">Nom</label><input id="rn" autocomplete="name"></div>
-        <div class="fld full"><label for="rp">Téléphone</label><input id="rp" type="tel" inputmode="tel" autocomplete="tel"></div>
-        <div class="fld"><label for="rd">Date</label><input id="rd" type="date"></div>
-        <div class="fld"><label for="rt">Heure</label><select id="rt"><option>12:30</option><option>13:30</option><option>19:30</option><option selected>20:30</option><option>21:30</option><option>22:30</option></select></div>
-        <div class="fld"><label for="rx">Personnes</label><select id="rx"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>Plus de 8</option></select></div>
-        <div class="fld"><label for="rz">Salle</label><select id="rz"><option>À l'étage · Pino Notte</option><option>Rez-de-chaussée</option></select></div>
-      </div>
-      <p class="err" id="re" hidden></p>
-      <div class="acts"><button class="btn btn-dark" type="submit">Préparer la demande</button></div>
-    </form>
-    <div id="rdone" hidden>
-      <div class="summary" id="rs"></div>
-      <div class="acts"><a class="btn btn-gold" id="rw" href="#" target="_blank" rel="noopener">Envoyer sur WhatsApp</a><button class="btn btn-dark" type="button" id="redit">Modifier</button></div>
-      <p class="fine">Votre table est confirmée dès notre réponse sur WhatsApp.</p>
-    </div>
-  </div>
 </div>
 
 <script>
@@ -692,29 +648,6 @@ prods.forEach(b=>b.onclick=()=>{
   note.textContent=`${P[k]} : ${hit} de ces ingrédients, dont ${sh} partagés avec les autres produits.`;
 });
 
-/* reservation */
-const modal=document.getElementById("modal"),rf=document.getElementById("rf"),rdone=document.getElementById("rdone"),re=document.getElementById("re"),rd=document.getElementById("rd");
-let back=null;
-function openM(){back=document.activeElement;menu(false);modal.hidden=false;document.body.style.overflow="hidden";rf.hidden=false;rdone.hidden=true;setTimeout(()=>document.getElementById("rn").focus(),60)}
-function closeM(){modal.hidden=true;document.body.style.overflow="";back&&back.focus()}
-document.querySelectorAll("[data-reserve]").forEach(b=>b.addEventListener("click",openM));
-document.querySelector("[data-reserve-link]").addEventListener("click",e=>{e.preventDefault();openM()});
-document.getElementById("mx").onclick=closeM;
-modal.addEventListener("click",e=>{if(e.target===modal)closeM()});
-addEventListener("keydown",e=>{if(e.key==="Escape"&&!modal.hidden)closeM()});
-(()=>{const t=new Date(),iso=new Date(t-t.getTimezoneOffset()*6e4).toISOString().slice(0,10);rd.min=iso;rd.value=iso})();
-rf.addEventListener("submit",e=>{
-  e.preventDefault();
-  const n=document.getElementById("rn").value.trim(),p=document.getElementById("rp").value.trim(),d=rd.value,t=document.getElementById("rt").value,x=document.getElementById("rx").value,z=document.getElementById("rz").value;
-  const m=[];if(!n)m.push("votre nom");if(p.replace(/\D/g,"").length<9)m.push("un numéro de téléphone valide");if(!d)m.push("une date");
-  if(m.length){re.textContent="Il manque "+m.join(", ")+".";re.hidden=false;return}
-  re.hidden=true;
-  const dl=new Date(d+"T12:00").toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"});
-  document.getElementById("rs").textContent=`${n} · ${x} pers.\n${dl} à ${t}\n${z}`;
-  document.getElementById("rw").href=wa(`Bonjour Chez Pino, je souhaite réserver une table.\nNom : ${n}\nTéléphone : ${p}\nDate : ${dl}\nHeure : ${t}\nPersonnes : ${x}\nSalle : ${z}`);
-  rf.hidden=true;rdone.hidden=false;
-});
-document.getElementById("redit").onclick=()=>{rf.hidden=false;rdone.hidden=true};
 </script>
 </body>
 </html>
