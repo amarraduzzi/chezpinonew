@@ -300,6 +300,12 @@ footer{padding:clamp(56px,7vw,90px) var(--g) calc(40px + env(safe-area-inset-bot
   .hero .btn-line{display:none}
   .bbar{transform:translateY(calc(100% + 30px));transition:transform .45s cubic-bezier(.2,.7,.2,1)}
   .bbar.show{transform:none}
+  /* Pino Notte mobile: info cards flow under the copy instead of floating over it */
+  .notte{display:flex;flex-direction:column;gap:12px;min-height:0;padding:120px 18px 22px}
+  .notte>img{position:absolute;inset:0}
+  .notte-copy{position:relative;inset:auto;padding:0 0 26px;z-index:2}
+  .notte .float,.notte .float.f3{display:grid;position:relative;inset:auto;left:auto;right:auto;top:auto;bottom:auto;transform:none;rotate:none;animation:none;width:100%;order:1;z-index:2}
+  .notte .float.f1,.notte .float.f2,.notte .float.f3{top:auto;bottom:auto;left:auto;right:auto}
   body{font-size:14px}
   .bbar{display:flex}
   footer{padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}
