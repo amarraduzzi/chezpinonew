@@ -338,7 +338,7 @@ footer{padding:clamp(56px,7vw,90px) var(--g) calc(40px + env(safe-area-inset-bot
 <!-- HERO -->
 <section class="hero" id="top">
   <div class="ph hero-ph">
-    <img data-img="hero" data-w="2000" alt="Panuozzo garni de dinde, mozzarella, tomate et roquette" fetchpriority="high">
+    <img data-img="hero" data-w="2000" alt="Panuozzo coupé en deux, mozzarella filante, dinde fumée et tomate, devant le four à bois" fetchpriority="high">
     <div class="hero-copy seq">
       <p class="label">Hay Riad · Rabat</p>
       <h1>Chez Pino</h1>
@@ -384,22 +384,22 @@ footer{padding:clamp(56px,7vw,90px) var(--g) calc(40px + env(safe-area-inset-bot
     </div>
     <div class="cards">
       <a class="ph dcard rv" href="#carte" data-tab="pan">
-        <img data-img="panHands" data-w="700" alt="Panuozzo tenu à deux mains" loading="lazy">
-        <div class="top"><h3>Pino Classico</h3><p>Mozzarella · Dinde fumée · Tomate · Basilic</p></div>
+        <img data-img="panHands" data-w="700" alt="Panuozzo au poulet, pesto et poivrons tenu à deux mains" loading="lazy">
+        <div class="top"><h3>Pino Pollo</h3><p>Poulet rôti · Mozzarella · Pesto · Poivron</p></div>
         <div class="bot"><span class="chip gold">Panuozzo</span><span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></div>
       </a>
       <a class="ph dcard rv" href="#carte" data-tab="piz">
-        <img data-img="pizzaOven" data-w="700" alt="Pizza margherita au four à bois" loading="lazy">
+        <img data-img="margherita" data-w="700" alt="Pizza margherita vue de dessus" loading="lazy">
         <div class="top"><h3>Margherita</h3><p>Tomate · Fior di latte · Basilic · Huile d'olive</p></div>
         <div class="bot"><span class="chip">Pizza</span><span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></div>
       </a>
       <a class="ph dcard rv" href="#carte" data-tab="pan">
-        <img data-img="panPaper" data-w="700" alt="Panuozzo emballé à emporter" loading="lazy">
+        <img data-img="panPaper" data-w="700" alt="Panuozzo aux légumes et pesto emballé à emporter" loading="lazy">
         <div class="top"><h3>Pino Verde</h3><p>Mozzarella · Pesto · Courgette · Poivron · Roquette</p></div>
         <div class="bot"><span class="chip gold">Panuozzo</span><span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></div>
       </a>
       <a class="ph dcard rv" href="#carte" data-tab="pas">
-        <img data-img="penne" data-w="700" alt="Penne à la bolognese" loading="lazy">
+        <img data-img="bolognese" data-w="700" alt="Tagliatelle à la bolognese" loading="lazy">
         <div class="top"><h3>Bolognese</h3><p>Bœuf · Tomate · Parmesan</p></div>
         <div class="bot"><span class="chip">Pasta</span><span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8h12M9 3l5 5-5 5"/></svg></span></div>
       </a>
@@ -413,7 +413,7 @@ footer{padding:clamp(56px,7vw,90px) var(--g) calc(40px + env(safe-area-inset-bot
     <p class="label">La signature</p>
     <h2>Le Panuozzo<span class="it">Même pâte. Nouvelle expérience.</span></h2>
     <div class="pan-mini">
-      <div class="ph"><img data-img="dough" data-w="400" alt="Panuozzo tout juste sorti du four" loading="lazy"></div>
+      <div class="ph"><img data-img="panOven" data-w="500" alt="Panuozzo sortant du four à bois" loading="lazy"></div>
       <p>La pâte de nos pizzas est cuite, ouverte, garnie, puis repassée au four. Croustillante dehors, aérienne dedans, fondante au cœur.</p>
     </div>
     <ol class="steps" aria-label="Préparation du panuozzo">
@@ -421,7 +421,7 @@ footer{padding:clamp(56px,7vw,90px) var(--g) calc(40px + env(safe-area-inset-bot
     </ol>
   </div>
   <div class="ph pan-right rv">
-    <img data-img="pizzaiolo" data-w="1400" alt="Pizzaiolo devant le four à bois" loading="lazy">
+    <img data-img="pizzaiolo" data-w="1400" alt="Pizzaiolo enfournant devant le four à bois" loading="lazy">
     <span class="chip gold pan-tag">Né à Gragnano, près de Naples</span>
     <div class="ov">
       <p class="label">Une pâte · un four · une signature</p>
@@ -545,29 +545,28 @@ footer{padding:clamp(56px,7vw,90px) var(--g) calc(40px + env(safe-area-inset-bot
 const WHATSAPP = "212600000000"; // numéro du restaurant, format international sans +
 /* Photos : remplacez chaque URL par vos propres photos (ex. "img/hero.jpg") */
 const IMAGES = {
-  hero:      "img/panuozzo-classico.webp",
-  panSlate:  "img/panuozzo-classico.webp",
-  panHands:  "https://images.unsplash.com/photo-1639667910197-888506ab6827",
-  panBeef:   "img/panuozzo-beef.webp",
-  panRocket: "img/panuozzo-roquette.webp",
-  panPaper:  "https://images.unsplash.com/photo-1727606533010-c43e41952e99",
-  dough:     "img/panuozzo-gebakken.webp",
-  pizzaiolo: "https://images.unsplash.com/photo-1570946581013-83b974ed3fb7",
-  pizzaOven: "https://images.unsplash.com/photo-1622880833523-7cf1c0bd4296",
-  fire:      "https://images.unsplash.com/photo-1606152196365-d1ce5ea838b5",
-  margherita:"https://images.unsplash.com/photo-1574071318508-1cdbab80d002",
-  pizzaSlice:"https://images.unsplash.com/photo-1513104890138-7c749659a591",
-  pizzaTop:  "https://images.unsplash.com/photo-1651981075280-9a9e01acbff0",
-  pizzaBoard:"https://images.unsplash.com/photo-1579751626657-72bc17010498",
-  cheese:    "https://images.unsplash.com/photo-1593504049359-74330189a345",
-  pull:      "https://images.unsplash.com/photo-1724734333243-17c38ef0cdfd",
-  basil:     "https://images.unsplash.com/photo-1664309688328-578b4939b4cf",
-  penne:     "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9",
-  spaghetti: "https://images.unsplash.com/photo-1571175534150-72cd2b5a6039",
-  arrabbiata:"https://images.unsplash.com/photo-1676300184847-4ee4030409c0",
-  night:     "https://images.unsplash.com/photo-1552960226-639240203497",
-  upstairs:  "https://images.unsplash.com/photo-1709548145082-04d0cde481d4",
-  day:       "https://images.unsplash.com/photo-1555396273-367ea4eb4db5"
+  hero:       "img/hero.webp",
+  panClassico:"img/panuozzo-classico.webp",
+  panHands:   "img/pan-hands.webp",
+  panPaper:   "img/pan-takeaway.webp",
+  panBeef:    "img/pan-beef.webp",
+  panPiccante:"img/pan-piccante.webp",
+  panOven:    "img/pan-oven.webp",
+  panBaked:   "img/panuozzo-gebakken.webp",
+  panRocket:  "img/panuozzo-roquette.webp",
+  panMeatball:"img/panuozzo-beef.webp",
+  dough:      "img/dough.webp",
+  pizzaiolo:  "img/pizzaiolo.webp",
+  margherita: "img/margherita.webp",
+  pizzaPollo: "img/pizza-pollo.webp",
+  bolognese:  "img/pasta-bolognese.webp",
+  arrabbiata: "img/pasta-arrabbiata.webp",
+  pizzaSlice: "https://images.unsplash.com/photo-1513104890138-7c749659a591",
+  spaghetti:  "https://images.unsplash.com/photo-1571175534150-72cd2b5a6039",
+  pull:       "https://images.unsplash.com/photo-1724734333243-17c38ef0cdfd",
+  night:      "https://images.unsplash.com/photo-1552960226-639240203497",
+  upstairs:   "https://images.unsplash.com/photo-1709548145082-04d0cde481d4",
+  day:        "https://images.unsplash.com/photo-1555396273-367ea4eb4db5"
 };
 const src=(k,w)=>{const u=IMAGES[k];return /unsplash\.com/.test(u)?`${u}?auto=format&fit=crop&w=${w}&q=78`:u};
 const wa=t=>"https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(t);
@@ -579,7 +578,7 @@ function setImg(el){
 }
 
 /* strip */
-const STRIP=["dough","panRocket","fire","margherita","panPaper","basil","spaghetti","pizzaTop","cheese","dough","arrabbiata"];
+const STRIP=["panOven","margherita","panRocket","dough","pizzaPollo","panPiccante","panBaked","arrabbiata","panMeatball"];
 document.getElementById("track").innerHTML=[...STRIP,...STRIP].map(k=>`<div class="ph"><img data-img="${k}" data-w="500" alt="" loading="lazy"></div>`).join("");
 document.querySelectorAll("img[data-img]").forEach(setImg);
 
@@ -601,7 +600,7 @@ const MENU={
     ["Pino Pollo","Poulet rôti · Mozzarella · Pesto · Poivron"],
     ["Pino Beef","Bœuf · Mozzarella · Oignon caramélisé · Sauce poivre",1],
     ["Pino Verde","Mozzarella · Pesto · Courgette · Poivron · Roquette"]],
-    pics:[["panSlate","Pino Classico","Panuozzo",1],["panBeef","Pino Beef","Bœuf · Parmesan"],["panPaper","À emporter","Emballé chaud"]]},
+    pics:[["panClassico","Pino Classico","Dinde fumée · Mozzarella",1],["panBeef","Pino Beef","Sauce poivre"],["panPiccante","Pino Piccante","Salami de bœuf · Chili"]]},
   piz:{items:[
     ["Margherita","Tomate · Fior di latte · Basilic · Huile d'olive",1],
     ["Piccante","Tomate · Fior di latte · Salami de bœuf piquant · Chili"],
@@ -609,14 +608,14 @@ const MENU={
     ["Pollo","Tomate · Fior di latte · Poulet rôti · Champignons · Oignons"],
     ["Vegetariana","Tomate · Fior di latte · Courgette · Poivron · Champignons · Olives"],
     ["Tonno","Tomate · Fior di latte · Thon · Oignon rouge · Olives"]],
-    pics:[["pizzaOven","Margherita","Au four",1],["margherita","Basilic frais","Fior di latte"],["pizzaSlice","Bords alvéolés","Pâte maison"]]},
+    pics:[["pizzaPollo","Pollo","Poulet rôti · Champignons",1],["margherita","Margherita","Fior di latte · Basilic"],["pizzaSlice","Bords alvéolés","Pâte maison"]]},
   pas:{items:[
     ["Pomodoro","Tomate · Basilic · Parmesan"],
     ["Arrabbiata","Tomate · Ail · Chili · Parmesan"],
     ["Pollo Crema","Poulet · Crème · Champignons · Parmesan"],
     ["Bolognese","Bœuf · Tomate · Parmesan",1],
     ["Pesto Pollo","Pesto · Poulet · Parmesan · Tomates cerises"]],
-    pics:[["penne","Bolognese","Bœuf mijoté",1],["spaghetti","Pomodoro","Le classique"],["arrabbiata","Arrabbiata","Piquante"]]}
+    pics:[["bolognese","Bolognese","Bœuf mijoté",1],["arrabbiata","Arrabbiata","Piquante"],["spaghetti","Pomodoro","Le classique"]]}
 };
 const list=document.getElementById("list"),pics=document.getElementById("pics"),tabs=[...document.querySelectorAll(".tab")];
 function showCat(c){
