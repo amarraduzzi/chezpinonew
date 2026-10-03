@@ -548,6 +548,8 @@ const IMAGES = {
   hero:      "img/panuozzo-classico.webp",
   panSlate:  "img/panuozzo-classico.webp",
   panHands:  "https://images.unsplash.com/photo-1639667910197-888506ab6827",
+  panBeef:   "img/panuozzo-beef.webp",
+  panRocket: "img/panuozzo-roquette.webp",
   panPaper:  "https://images.unsplash.com/photo-1727606533010-c43e41952e99",
   dough:     "img/panuozzo-gebakken.webp",
   pizzaiolo: "https://images.unsplash.com/photo-1570946581013-83b974ed3fb7",
@@ -577,7 +579,7 @@ function setImg(el){
 }
 
 /* strip */
-const STRIP=["dough","fire","margherita","panPaper","basil","spaghetti","pizzaTop","cheese","dough","arrabbiata"];
+const STRIP=["dough","panRocket","fire","margherita","panPaper","basil","spaghetti","pizzaTop","cheese","dough","arrabbiata"];
 document.getElementById("track").innerHTML=[...STRIP,...STRIP].map(k=>`<div class="ph"><img data-img="${k}" data-w="500" alt="" loading="lazy"></div>`).join("");
 document.querySelectorAll("img[data-img]").forEach(setImg);
 
@@ -599,7 +601,7 @@ const MENU={
     ["Pino Pollo","Poulet rôti · Mozzarella · Pesto · Poivron"],
     ["Pino Beef","Bœuf · Mozzarella · Oignon caramélisé · Sauce poivre",1],
     ["Pino Verde","Mozzarella · Pesto · Courgette · Poivron · Roquette"]],
-    pics:[["panSlate","Pino Classico","Panuozzo",1],["panHands","Pino Classico","À la main"],["panPaper","À emporter","Emballé chaud"]]},
+    pics:[["panSlate","Pino Classico","Panuozzo",1],["panBeef","Pino Beef","Bœuf · Parmesan"],["panPaper","À emporter","Emballé chaud"]]},
   piz:{items:[
     ["Margherita","Tomate · Fior di latte · Basilic · Huile d'olive",1],
     ["Piccante","Tomate · Fior di latte · Salami de bœuf piquant · Chili"],
